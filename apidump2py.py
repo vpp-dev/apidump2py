@@ -176,6 +176,23 @@ def unsign(d):
 
 # methods for API call conversion - one method generally converts one API call
 
+def get_first_msg_id(w):
+  print ("# get_first_msg_id " + str(w))
+
+# SCRIPT: ip_neighbor_add_del sw_if_index 4 mac 02:04:00:00:ff:02 dst 172.16.4.2 (end: ['172.16.4.2']
+def ip_neighbor_add_del(w):
+  print("# ip_neighbor_add_del " + str(w))
+
+def cli_exec(w):
+  print("# exec " + str(w))
+
+# SCRIPT: create_loopback mac 00:00:00:00:00:00 (end: ['00:00:00:00:00:00']
+def create_loopback(w):
+  mac_addr = str2mac(w[1])
+  cmd = { "mac_address": mac_addr }
+  print("loop_args = " + pprint.pformat(cmd))
+  print("rv = vpp.api.create_loopback(**loop_args)")
+
 def memclnt_create(w):
   print ("# memclnt create"+ str(w))
 
@@ -309,7 +326,10 @@ def acl_add_replace(w):
   # print("# acl_add_replace")
   global parser
   global accumulator
-  accumulator = { 'cmd':"acl_add_replace", 'acl_index':int(unsign(w[0])), 'count':int(w[2]), 'tag':w[4], 'r':[], 'cur_rule':{} }
+  if len(w) > 4:
+    accumulator = { 'cmd':"acl_add_replace", 'acl_index':int(unsign(w[0])), 'count':int(w[2]), 'tag':w[4], 'r':[], 'cur_rule':{} }
+  else:
+    accumulator = { 'cmd':"acl_add_replace", 'acl_index':int(unsign(w[0])), 'count':int(w[2]), 'r':[], 'cur_rule':{} }
   parser = acl_add_replace_parser
   # pprint.pprint(a)
 
@@ -393,7 +413,9 @@ def macip_acl_add_parser(w):
     accumulator["cur_rule"]["src_ip_prefix_len"] = adrs.addr_len
   elif w[0] == 'src' and w[1] == 'mac':
     mac_addr = str2mac(w[2])
-    mac_addr_mask = str2mac(w[4])
+    mac_mask = str2mac(w[4])
+    accumulator["cur_rule"]["src_mac"] = mac_addr
+    accumulator["cur_rule"]["src_mac_mask"] = mac_mask
 
 
 def macip_acl_add(w):
@@ -432,6 +454,8 @@ for line in fileinput.input():
   if (len(words) > 0 and words[0] == 'SCRIPT:'):
     api_call_name = words[1]
     print("\n# " + line + " (end: " + str(words[-1:]))
+    if api_call_name == "exec":
+      api_call_name = "cli_exec"
     globals()[api_call_name](words[2:])
   elif parser != None:
     parser(words)
