@@ -202,6 +202,9 @@ def ip_neighbor_add_del(w):
 def cli_exec(w):
   print("        # exec " + str(w))
 
+def show_version(w):
+  print("        rv = self.vapi.papi.show_version()")
+
 # SCRIPT: create_loopback mac 00:00:00:00:00:00 (end: ['00:00:00:00:00:00']
 def create_loopback(w):
   mac_addr = str2mac(w[1])
@@ -215,14 +218,123 @@ def memclnt_create(w):
 def want_ip4_arp_events(w):
   print ("# want_ip4_arp_events"+ str(w))
 
+def want_interface_events(w):
+  print ("# want_interface_events"+ str(w))
+
 def sw_interface_dump(w):
   print("        rv = self.vapi.papi.sw_interface_dump()")
+
+def ip6_address_dump(w):
+  print("        # rv = self.vapi.papi.ip6_address_dump()")
+
+def sw_interface_tap_dump(w):
+  print("        rv = self.vapi.papi.sw_interface_tap_dump()")
+
+def sw_interface_tap_v2_dump(w):
+  print("        rv = self.vapi.papi.sw_interface_tap_v2_dump()")
+
+def vxlan_tunnel_dump(w):
+  print("        rv = self.vapi.papi.vxlan_tunnel_dump()")
+
+def l2_fib_table_dump(w):
+  print("        rv = self.vapi.papi.l2_fib_table_dump()")
+
+def ip_fib_dump(w):
+  print("        rv = self.vapi.papi.ip_fib_dump()")
+
+def ip6_fib_dump(w):
+  print("        rv = self.vapi.papi.ip6_fib_dump()")
+
+# SCRIPT: sw_interface_set_table sw_if_index 1
+def sw_interface_set_table(w):
+  print("        # FIXME rv = self.vapi.papi.sw_interface_set_table()")
+
+# SCRIPT: sw_interface_set_mtu sw_if_index 2 tag 1450 
+def sw_interface_set_mtu(w):
+  print("        # FIXME rv = self.vapi.papi.sw_interface_set_mtu()")
+
+# SCRIPT: ip_table_add_del add table 1
+def ip_table_add_del(w):
+  print("        # FIXME rv = self.vapi.papi.ip_table_add_del()")
+
+def nat44_static_mapping_dump(w):
+  print("        rv = self.vapi.papi.nat44_static_mapping_dump()")
+def nat44_lb_static_mapping_dump(w):
+  print("        rv = self.vapi.papi.nat44_lb_static_mapping_dump()")
+def nat44_identity_mapping_dump(w):
+  print("        rv = self.vapi.papi.nat44_identity_mapping_dump()")
+def nat44_forwarding_is_enabled(w):
+  print("        rv = self.vapi.papi.nat44_forwarding_is_enabled()")
+def nat44_interface_dump(w):
+  print("        rv = self.vapi.papi.nat44_interface_dump()")
+def nat44_interface_output_feature_dump(w):
+  print("        rv = self.vapi.papi.nat44_interface_output_feature_dump()")
+def nat44_address_dump(w):
+  print("        rv = self.vapi.papi.nat44_address_dump()")
+def nat44_user_dump(w):
+  print("        rv = self.vapi.papi.nat44_user_dump()")
+def nat44_user_session_dump(w):
+  print("        rv = self.vapi.papi.nat44_user_session_dump()")
+def nat_get_reass(w):
+  print("        rv = self.vapi.papi.nat_get_reass()")
+
+# SCRIPT: nat44_forwarding_enable_disable enable 1
+def nat44_forwarding_enable_disable(w):
+  print("        # FIXME rv = self.vapi.papi.nat44_forwarding_enable_disable()")
+
+# SCRIPT: nat44_interface_add_del_feature sw_if_index 3 out
+def nat44_interface_add_del_feature(w):
+  print("        # FIXME rv = self.vapi.papi.nat44_interface_add_del_feature()")
+
+# SCRIPT: nat44_interface_add_del_output_feature sw_if_index 1 out
+def nat44_interface_add_del_output_feature(w):
+  print("        # FIXME rv = self.vapi.papi.nat44_interface_add_del_output_feature()")
+
+# SCRIPT: nat44_add_address_range 192.168.16.1 twice_nat 0 ^M
+def nat44_add_address_range(w):
+  print("        # FIXME rv = self.vapi.papi.nat44_add_address_range()")
+
+# SCRIPT: nat44_add_del_identity_mapping addr 192.168.16.1protocol 17 port 4789vrf 0
+# SCRIPT: nat44_add_del_identity_mapping addr 192.168.16.1vrf 0
+def nat44_add_del_identity_mapping(w):
+  print("        # FIXME rv = self.vapi.papi.nat44_add_del_identity_mapping()")
+
+# SCRIPT: nat44_add_del_static_mapping protocol 6 local_addr 10.20.0.2 external_addr 192.168.16.1 local_port 12379 external_port 32379 twice_nat 0 out2in_only 1 vrf 0
+# SCRIPT: nat44_add_del_static_mapping protocol 6 local_addr 10.20.0.2 external_addr 10.20.0.2 local_port 12379 external_port 32379 twice_nat 0 out2in_only 1 vrf 0
+def nat44_add_del_static_mapping(w):
+  print("        # FIXME rv = self.vapi.papi.nat44_add_del_static_mapping()")
+
+# SCRIPT: l2fib_add_del mac 1a:2b:3c:4d:5e:02 bd_id 1 sw_if_index 5 static 
+def l2fib_add_del(w):
+  print("        # FIXME rv = self.vapi.papi.l2fib_add_del()")
+
+
+
+
+
+# SCRIPT: ip_scan_neighbor_enable_disable disable interval 0 max-time 0 max-update 0 delay 0 stale 0
+def ip_scan_neighbor_enable_disable(w):
+  print("        # FIXME rv = self.vapi.papi.ip_scan_neighbor_enable_disable()")
+
+# SCRIPT: ip_add_del_route 0.0.0.0/0 via 192.168.16.100 sw_if_index 1 weight 0 multipath
+# SCRIPT: ip_add_del_route del fe80::/10 via :: multipath
+
+def ip_add_del_route(w):
+  print("        # FIXME rv = self.vapi.papi.ip_add_del_route()")
 
 def control_ping(w):
   print("        rv = self.vapi.papi.control_ping()")
 
+
+# SCRIPT: sw_interface_tag_add_del sw_if_index 0 tag local0
+# SCRIPT: sw_interface_tag_add_del sw_if_index 3 tag net-vpp.physnet:physnet1
+
+
 def sw_interface_tag_add_del(w):
-  print("        rv = self.vapi.papi.sw_interface_tag_add_del(sw_if_index=" + w[1] + ", tag='" + w[3] + "')")
+  if w[-1] == "del":
+      print("        rv = self.vapi.papi.sw_interface_tag_add_del(sw_if_index=" + w[1] + ", is_add=0)")
+  else:
+      print("        rv = self.vapi.papi.sw_interface_tag_add_del(sw_if_index=" + w[1] + ", tag='" + w[3] + "')")
 
 def sw_interface_set_flags(w):
   updown = 1 if w[2] == 'admin-up'  else 0
@@ -255,7 +367,10 @@ def bridge_domain_add_del(w):
   if w[2] == 'del':
     print("        rv = self.vapi.papi.bridge_domain_add_del(bd_id=" + w[1] + ", is_add=0)")
   else:
-    print("        rv = self.vapi.papi.bridge_domain_add_del(bd_id=" + w[1] + ", flood=" + w[3] + ", uu_flood=" + w[5] + ", forward=" + w[7]+ ", learn=" + w[9] + ", arp_term=" + w[11] + ", mac_age=" + w[13] + ", is_add=1)")
+    if w[2] == 'bd_tag':
+      print("        rv = self.vapi.papi.bridge_domain_add_del(bd_id=" + w[1] + ", flood=" + w[5] + ", uu_flood=" + w[7] + ", forward=" + w[9]+ ", learn=" + w[11] + ", arp_term=" + w[13] + ", mac_age=" + w[15] + ", is_add=1)")
+    else:
+      print("        rv = self.vapi.papi.bridge_domain_add_del(bd_id=" + w[1] + ", flood=" + w[3] + ", uu_flood=" + w[5] + ", forward=" + w[7]+ ", learn=" + w[9] + ", arp_term=" + w[11] + ", mac_age=" + w[13] + ", is_add=1)")
   # print("        # bridge_domain_add_del")
 
 def sw_interface_set_l2_bridge(w):
@@ -395,6 +510,8 @@ def acl_interface_set_acl_list(w):
 # MACIP_ACL_PARSE: ['src', 'ip', '70.0.0.42/32,', '\\']
 # MACIP_ACL_PARSE: []
 
+def acl_del(w):
+  print("        rv = self.vapi.papi.acl_del(acl_index=" + w[0] +  ")")
 
 def macip_acl_add_parser(w):
   global parser
@@ -449,6 +566,14 @@ def macip_acl_del(w):
 def macip_acl_interface_add_del(w):
   print("        rv = self.vapi.papi.macip_acl_interface_add_del(sw_if_index=" + w[1] + ", acl_index=" + w[3] +  ")")
   # print("        # macip_acl_interface_add_del")
+
+# SCRIPT: tap_create_v2 id 4294967295 host-if-name vpp1
+def tap_create_v2(w):
+  print("        rv = self.vapi.papi.tap_create_v2(id=" + w[1] + ", host_if_name='" + w[3] +  "', host_if_name_set=1)")
+
+# SCRIPT: tap_delete_v2 sw_if_index 6
+def tap_delete_v2(w):
+  print("        rv = self.vapi.papi.tap_delete_v2(sw_if_index=" + w[1] +  ")")
 
 
 def tap_connect(w):
